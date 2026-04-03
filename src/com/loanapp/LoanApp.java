@@ -4,8 +4,9 @@ public class LoanApp {
     public static void main(String[] args) {
         AuthService authService = new AuthService();
         OtpService otpService = new OtpService();
+        NotificationService notificationService = new NotificationService();
         PayrollDeductionService payrollDeductionService = new PayrollDeductionService();
-        LoanService loanService = new LoanService(payrollDeductionService);
+        LoanService loanService = new LoanService(notificationService, payrollDeductionService);
         LoanApplication application = loanService.submitApplication("applicant@example.com", 5000.0);
 
         System.out.println("Login success: " + authService.login("demo", "password123"));
