@@ -5,6 +5,10 @@ public class LoanService {
     }
 
     public LoanApplication submitApplication(String email, double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Loan amount must be greater than zero");
+        }
+
         return new LoanApplication(email, amount);
     }
 
