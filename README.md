@@ -8,3 +8,5 @@ A minimal Java console loan application created to demonstrate commit history qu
 javac -d out src/com/loanapp/*.java
 java -cp out com.loanapp.LoanApp
 ```
+
+The app currently supports login, loan application submission, repayment calculation, and reset token checks.
