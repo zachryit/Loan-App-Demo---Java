@@ -6,6 +6,10 @@ public class AuthService {
             return false;
         }
 
+        if (password == null || password.isBlank()) {
+            return false;
+        }
+
         return "password123".equals(password);
     }
 }
