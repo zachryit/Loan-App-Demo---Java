@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OtpService {
+    private static final long RESET_TOKEN_TTL_SECONDS = 300;
     private final Map<String, Instant> resetTokenExpiry = new HashMap<>();
 
     public void issueResetToken(String email) {
-        resetTokenExpiry.put(email, Instant.now().plusSeconds(900));
+        resetTokenExpiry.put(email, Instant.now().plusSeconds(RESET_TOKEN_TTL_SECONDS));
     }
 
     public boolean isResetTokenValid(String email) {
