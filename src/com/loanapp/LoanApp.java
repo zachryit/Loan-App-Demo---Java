@@ -7,9 +7,11 @@ public class LoanApp {
         PayrollDeductionService payrollDeductionService = new PayrollDeductionService();
         LoanService loanService = new LoanService(notificationService, payrollDeductionService);
         PaymentService paymentService = new PaymentService();
+        EmployeeInvitationService employeeInvitationService = new EmployeeInvitationService();
         LoanApplication application = loanService.submitApplication("applicant@example.com", 5000.0);
 
         System.out.println("Login success: " + authService.login("demo", "password123"));
+        System.out.println("Employee invited: " + employeeInvitationService.invite("staff@company.com"));
         System.out.println("Payment retry accepted: " + paymentService.retryPayment("PAY-001"));
         System.out.println("Loan created for " + application.getEmail());
         System.out.println("Monthly repayment: " + loanService.calculateRepayment(application.getAmount(), 10));
