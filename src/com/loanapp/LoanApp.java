@@ -3,7 +3,6 @@ package com.loanapp;
 public class LoanApp {
     public static void main(String[] args) {
         AuthService authService = new AuthService();
-        OtpService otpService = new OtpService();
         NotificationService notificationService = new NotificationService();
         PayrollDeductionService payrollDeductionService = new PayrollDeductionService();
         LoanService loanService = new LoanService(notificationService, payrollDeductionService);
@@ -12,8 +11,8 @@ public class LoanApp {
         System.out.println("Login success: " + authService.login("demo", "password123"));
         System.out.println("Loan created for " + application.getEmail());
         System.out.println("Monthly repayment: " + loanService.calculateRepayment(application.getAmount(), 10));
-        otpService.issueResetToken(application.getEmail());
-        System.out.println("Reset token valid: " + otpService.isResetTokenValid(application.getEmail()));
+        authService.issueResetToken(application.getEmail());
+        System.out.println("Reset token valid: " + authService.isResetTokenValid(application.getEmail()));
         loanService.approveLoan(application);
         System.out.println("Approved: " + application.isApproved());
     }
