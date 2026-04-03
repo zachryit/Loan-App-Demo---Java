@@ -8,4 +8,12 @@ public class LoanService {
     public void approveLoan(LoanApplication application) {
         application.approve();
     }
+
+    public double calculateRepayment(double amount, int months) {
+        if (months <= 0) {
+            throw new IllegalArgumentException("Months must be greater than zero");
+        }
+
+        return amount / months;
+    }
 }

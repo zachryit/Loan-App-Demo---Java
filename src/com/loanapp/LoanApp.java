@@ -8,6 +8,7 @@ public class LoanApp {
 
         System.out.println("Login success: " + authService.login("demo", "password123"));
         System.out.println("Loan created for " + application.getEmail());
+        System.out.println("Monthly repayment: " + loanService.calculateRepayment(application.getAmount(), 10));
         loanService.approveLoan(application);
         System.out.println("Approved: " + application.isApproved());
     }
