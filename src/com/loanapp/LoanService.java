@@ -1,7 +1,10 @@
 package com.loanapp;
 
 public class LoanService {
-    public LoanService() {
+    private final NotificationService notificationService;
+
+    public LoanService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     public LoanApplication submitApplication(String email, double amount) {
@@ -22,5 +25,6 @@ public class LoanService {
 
     public void approveLoan(LoanApplication application) {
         application.approve();
+        notificationService.send(application.getApplicantEmail(), "Your loan has been approved.");
     }
 }

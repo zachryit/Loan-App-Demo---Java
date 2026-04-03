@@ -3,7 +3,8 @@ package com.loanapp;
 public class LoanApp {
     public static void main(String[] args) {
         AuthService authService = new AuthService();
-        LoanService loanService = new LoanService();
+        NotificationService notificationService = new NotificationService();
+        LoanService loanService = new LoanService(notificationService);
         OtpService otpService = new OtpService();
 
         System.out.println("Login success: " + authService.login("demo", "password123"));
