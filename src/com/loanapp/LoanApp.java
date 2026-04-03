@@ -3,8 +3,9 @@ package com.loanapp;
 public class LoanApp {
     public static void main(String[] args) {
         AuthService authService = new AuthService();
-        LoanService loanService = new LoanService();
         OtpService otpService = new OtpService();
+        PayrollDeductionService payrollDeductionService = new PayrollDeductionService();
+        LoanService loanService = new LoanService(payrollDeductionService);
         LoanApplication application = loanService.submitApplication("applicant@example.com", 5000.0);
 
         System.out.println("Login success: " + authService.login("demo", "password123"));

@@ -1,6 +1,12 @@
 package com.loanapp;
 
 public class LoanService {
+    private final PayrollDeductionService payrollDeductionService;
+
+    public LoanService(PayrollDeductionService payrollDeductionService) {
+        this.payrollDeductionService = payrollDeductionService;
+    }
+
     public LoanApplication submitApplication(String email, double amount) {
         return new LoanApplication(email, amount);
     }
@@ -10,10 +16,6 @@ public class LoanService {
     }
 
     public double calculateRepayment(double amount, int months) {
-        if (months <= 0) {
-            throw new IllegalArgumentException("Months must be greater than zero");
-        }
-
-        return amount / months;
+        return payrollDeductionService.calculateMonthlyDeduction(amount, months);
     }
 }
