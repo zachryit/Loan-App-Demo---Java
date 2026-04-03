@@ -6,7 +6,6 @@ public class LoanApp {
         NotificationService notificationService = new NotificationService();
         PayrollDeductionService payrollDeductionService = new PayrollDeductionService();
         LoanService loanService = new LoanService(notificationService, payrollDeductionService);
-        OtpService otpService = new OtpService();
         EmployeeInvitationService employeeInvitationService = new EmployeeInvitationService();
         PaymentService paymentService = new PaymentService();
 
@@ -18,8 +17,8 @@ public class LoanApp {
         System.out.println("Application ID: " + application.getApplicationId());
         System.out.println("Monthly repayment: " + loanService.calculateRepayment(application.getAmount(), 10));
 
-        otpService.issueResetToken(application.getApplicantEmail());
-        System.out.println("Reset token valid: " + otpService.isResetTokenValid(application.getApplicantEmail()));
+        authService.issueResetToken(application.getApplicantEmail());
+        System.out.println("Reset token valid: " + authService.isResetTokenValid(application.getApplicantEmail()));
 
         loanService.approveLoan(application);
         System.out.println("Approved: " + application.isApproved());
