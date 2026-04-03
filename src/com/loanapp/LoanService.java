@@ -2,9 +2,11 @@ package com.loanapp;
 
 public class LoanService {
     private final NotificationService notificationService;
+    private final PayrollDeductionService payrollDeductionService;
 
-    public LoanService(NotificationService notificationService) {
+    public LoanService(NotificationService notificationService, PayrollDeductionService payrollDeductionService) {
         this.notificationService = notificationService;
+        this.payrollDeductionService = payrollDeductionService;
     }
 
     public LoanApplication submitApplication(String email, double amount) {
@@ -16,11 +18,7 @@ public class LoanService {
     }
 
     public double calculateRepayment(double amount, int months) {
-        if (months <= 0) {
-            throw new IllegalArgumentException("Months must be greater than zero");
-        }
-
-        return amount / months;
+        return payrollDeductionService.calculateMonthlyDeduction(amount, months);
     }
 
     public void approveLoan(LoanApplication application) {
